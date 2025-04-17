@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.30)
-project(Macro__)
+project(MacroPlusPlus)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Macro__
+add_executable(MacroPlusPlus
         src/main.cpp
         src/main.h
         src/input.cpp
