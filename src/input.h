@@ -6,9 +6,6 @@
 #define INPUT_H
 
 #include <unistd.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-
 #include <iostream>
 
 enum Modifier {

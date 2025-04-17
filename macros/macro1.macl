@@ -1,10 +1,28 @@
 # This is a comment
-# This macro types "Hello, World!"
+# This macro types "Hello, World!" follow by the letter "x" 5 times
 
 Mod[LSHIFTDOWN]
-Sleep[10] # Makes a 10 millisecond pause
+Sleep[100] # Makes a 100 millisecond pause
 Key[h] # Key[H] can also be used instead of Mod[LSHIFTDOWN], this was just used as a demonstration
 
 Mod[LSHIFTUP]
 Key[e]
-Key
+Key[l]
+Key[l]
+Key[o]
+Sleep[100]
+Key[,]
+Key[ ]
+Sleep[100]
+Key[W]
+Key[o]
+Key[r]
+Key[l]
+Key[d]
+Key[!]
+Key[ ]
+
+LOOP: xloop, 5;
+Key[x]
+Sleep[100]
+GOTO: xloop
