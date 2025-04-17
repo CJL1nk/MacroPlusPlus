@@ -4,5 +4,6 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main(int arc, char* argv[]) {
 
+    std::cout << "Hello World!" << std::endl;
     return 0;
 }
