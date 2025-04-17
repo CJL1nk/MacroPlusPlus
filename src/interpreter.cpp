@@ -23,10 +23,17 @@ bool start(std::istream& infile) {
         instruction = getInstruction(currLine, captureBracketPos.first); // Get instruction from line
         arg = getArg(currLine, captureBracketPos); // Get argument from line
 
-        if (instruction != "LOOP") {
+        if (instruction != "GOTO" && instruction != "LOOP") {
             //exec(instruction, arg); // Execute instruction with args
-        } else {
-            std::cout << arg << std::endl;
+        } else if (instruction == "GOTO") {
+        } else if (instruction == "LOOP") {
+
+            size_t commaPos = arg.find_first_of(',');
+
+            std::string label = arg.substr(1, commaPos);
+            size_t count = std::stoi(arg.substr(commaPos + 1));
+
+            loops[label] = Loop(, count);
         }
     }
 
