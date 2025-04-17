@@ -22,27 +22,31 @@ bool start(std::istream& infile) {
         instruction = getInstruction(currLine, captureBracketPos.first); // Get instruction from line
         arg = getArg(currLine, captureBracketPos); // Get argument from line
 
-        execute(instruction, arg); // Execute instruction and args
+        exec(instruction, arg); // Execute instruction and args
     }
 
     return true;
 }
 
-bool execute(std::string instruction, std::string arg) {
+bool exec(std::string instruction, std::string arg) {
 
-    const std::map<std::string, std::function<void(const std::string&)>> instructionMap = {
+    // Map mapping each instruction to a lambda function dealing with their high level logic
+    // The devious map of string to lambda function:
+    const std::unordered_map<std::string, std::function<void(const std::string&)>> instructionMap = {
         {"Key", [](const std::string& arg) { sendChar(arg[0]); }},
         {"Mod", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
         {"Sleep", [](const std::string& arg) { sleep(std::stoi(arg)); }},
         {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }},
-        {"LOOP", [](const std::string& arg) { std::cout << "LOOP" << std::endl; }},
+        {"LOOP", [](const std::string& arg) { loops[arg] = 0; }},
         {"GOTO", [](const std::string& arg) { std::cout << "GOTO" << std::endl; }}
     };
 
-    if (auto it = instructionMap.find(instruction); it != instructionMap.end()) {
-        it->second(arg);
-    } else {
+    try { // Call function at instruction map with arg
+        instructionMap.at(instruction)(arg);
+    } catch (std::out_of_range& e) { // If instruction didn't exist
         throw std::runtime_error("Invalid Instruction");
+    } catch (std::exception& e) { // If some random bullshit happened
+        throw std::runtime_error(e.what());
     }
 
     return true;

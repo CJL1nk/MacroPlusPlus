@@ -12,8 +12,8 @@
 
 #include "input.h"
 
-inline std::map<std::string, int> loops;
-inline std::map<std::string, Modifier> mods
+inline std::unordered_map<std::string, int> loops;
+inline std::unordered_map<std::string, Modifier> mods
 {   {"LCTRLDOWN", LCTRLDOWN},
     {"LCTRLUP", LCTRLUP},
     {"LSHIFTDOWN", LSHIFTDOWN},
@@ -29,7 +29,7 @@ inline std::map<std::string, Modifier> mods
     {"WINDOWN", WINDOWN},
     {"WINUP", WINUP}
 };
-inline std::map<std::string, MouseBtn> mouseBtns
+inline std::unordered_map<std::string, MouseBtn> mouseBtns
 {
     {"LDOWN", LDOWN},
     {"LUP", LUP},
@@ -42,7 +42,7 @@ inline std::map<std::string, MouseBtn> mouseBtns
 };
 
 bool start(std::istream& infile);
-bool execute(std::string instruction, std::string arg);
+bool exec(std::string instruction, std::string arg);
 std::string getInstruction(std::string line, size_t& captureBracketPos);
 std::pair<size_t, size_t> getCaptureBracketPos(std::string line);
 std::string getArg(std::string line, std::pair<size_t, size_t> captureBracketPos);
