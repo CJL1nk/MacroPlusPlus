@@ -17,9 +17,9 @@ void sendMouseBtn(MouseBtn btn) {
 }
 
 void sleep(int ms) {
-    Sleep(ms);
+    usleep(ms * 1000); // usleep is in microseconds
 }
 
 bool setMousePos(int x, int y) {
-    return SetCursorPos(x, y);
+    return false;
 }

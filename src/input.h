@@ -5,7 +5,10 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include <windows.h>
+#include <unistd.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+
 #include <iostream>
 
 enum Modifier {
