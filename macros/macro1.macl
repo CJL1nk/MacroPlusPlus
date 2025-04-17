@@ -22,7 +22,7 @@ Key[d]
 Key[!]
 Key[ ]
 
-LOOP: xloop, 5;
+LOOP: xloop, 5
 Key[x]
 Sleep[100]
 GOTO: xloop

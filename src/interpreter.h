@@ -12,7 +12,12 @@
 
 #include "input.h"
 
-inline std::unordered_map<std::string, int> loops;
+struct Loop {
+    std::streampos line;
+    size_t count;
+};
+
+inline std::unordered_map<std::string, Loop> loops;
 inline std::unordered_map<std::string, Modifier> mods
 {   {"LCTRLDOWN", LCTRLDOWN},
     {"LCTRLUP", LCTRLUP},

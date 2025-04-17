@@ -16,13 +16,18 @@ bool start(std::istream& infile) {
     while (infile.good()) { // While next line exists
 
         std::getline(infile, currLine); // Get next line
-        if (currLine.starts_with('#') || currLine.empty()) { continue; } // Go on to next line if comment or empty
+
+        if (currLine[0] == '#' || currLine.empty()) { continue; } // Go on to next line if comment or empty
 
         captureBracketPos = getCaptureBracketPos(currLine); // Get capture bracket positions
         instruction = getInstruction(currLine, captureBracketPos.first); // Get instruction from line
         arg = getArg(currLine, captureBracketPos); // Get argument from line
 
-        exec(instruction, arg); // Execute instruction and args
+        if (instruction != "LOOP") {
+            //exec(instruction, arg); // Execute instruction with args
+        } else {
+            std::cout << arg << std::endl;
+        }
     }
 
     return true;
@@ -37,7 +42,7 @@ bool exec(std::string instruction, std::string arg) {
         {"Mod", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
         {"Sleep", [](const std::string& arg) { sleep(std::stoi(arg)); }},
         {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }},
-        {"LOOP", [](const std::string& arg) { loops[arg] = 0; }},
+        {"LOOP", [](const std::string& arg) { loops[arg] = Loop(0, 0); }},
         {"GOTO", [](const std::string& arg) { std::cout << "GOTO" << std::endl; }}
     };
 
