@@ -18,7 +18,7 @@ bool start(std::istream& infile) {
         {"Key", [](const std::string& arg) { sendChar(arg[0]); }},
         {"Mod", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
         {"Sleep", [](const std::string& arg) { sleep(std::stoi(arg)); }},
-        {"MouseBtn", [](const std::string& arg) { /* handle mouse button */ }},
+        {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }},
         {"LOOP", [](const std::string& arg) { std::cout << "LOOP" << std::endl; }},
         {"GOTO", [](const std::string& arg) { std::cout << "GOTO" << std::endl; }}
     };
@@ -60,4 +60,8 @@ std::string getArg(std::string line, std::pair<size_t, size_t> captureBracketPos
 
 Modifier getModFromStr(std::string modStr) {
     return mods[modStr];
+}
+
+MouseBtn getMouseFromStr(std::string btnStr) {
+    return mouseBtns[btnStr];
 }

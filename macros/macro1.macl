@@ -26,3 +26,7 @@ LOOP: xloop, 5;
 Key[x]
 Sleep[100]
 GOTO: xloop
+
+Mouse[LDOWN]
+Sleep[200]
+Mouse[LUP]

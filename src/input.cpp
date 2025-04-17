@@ -12,7 +12,7 @@ void sendChar(char c) {
     std::cout << "Sent Char: " << c << std::endl;
 }
 
-void sendMouseBtn(MouseBtn btn) {
+void sendMouse(MouseBtn btn) {
     std::cout << "Sent MouseBtn: " << btn << std::endl;
 }
 

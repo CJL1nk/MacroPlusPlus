@@ -29,13 +29,16 @@ inline std::map<std::string, Modifier> mods
     {"WINDOWN", WINDOWN},
     {"WINUP", WINUP}
 };
-inline std::map<std::string, bool> valid
+inline std::map<std::string, MouseBtn> mouseBtns
 {
-    {"Key", true},
-    {"Mod", true},
-    {"Sleep", true},
-    {"LOOP", true},
-    {"GOTO", true}
+    {"LDOWN", LDOWN},
+    {"LUP", LUP},
+    {"MDOWN", MDOWN},
+    {"MUP", MUP},
+    {"RDOWN", RDOWN},
+    {"RUP", RUP},
+    {"WHEELDOWN", WHEELDOWN},
+    {"WHEELUP", WHEELUP}
 };
 
 bool start(std::istream& infile);
@@ -43,11 +46,6 @@ std::string getInstruction(std::string line, size_t& captureBracketPos);
 std::pair<size_t, size_t> getCaptureBracketPos(std::string line);
 std::string getArg(std::string line, std::pair<size_t, size_t> captureBracketPos);
 Modifier getModFromStr(std::string modStr);
-
-template<typename T>
-class arg
-{
-    T val;
-};
+MouseBtn getMouseFromStr(std::string btnStr);
 
 #endif //INTERPRETER_H
