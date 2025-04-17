@@ -12,6 +12,4 @@ add_executable(MacroPlusPlus
         src/interpreter.h
         src/record.cpp
         src/record.h
-        src/playback.cpp
-        src/playback.h
 )

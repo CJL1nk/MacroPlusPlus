@@ -42,6 +42,7 @@ inline std::map<std::string, MouseBtn> mouseBtns
 };
 
 bool start(std::istream& infile);
+bool execute(std::string instruction, std::string arg);
 std::string getInstruction(std::string line, size_t& captureBracketPos);
 std::pair<size_t, size_t> getCaptureBracketPos(std::string line);
 std::string getArg(std::string line, std::pair<size_t, size_t> captureBracketPos);
