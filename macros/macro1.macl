@@ -1,0 +1,10 @@
+# This is a comment
+# This macro types "Hello, World!"
+
+Mod[LSHIFTDOWN]
+Sleep[10] # Makes a 10 millisecond pause
+Key[h] # Key[H] can also be used instead of Mod[LSHIFTDOWN], this was just used as a demonstration
+
+Mod[LSHIFTUP]
+Key[e]
+Key

@@ -2,33 +2,7 @@
 // Created by CJ on 4/16/2025.
 //
 
-enum Modifier {
-    LCTRLDOWN,
-    LCTRLUP,
-    LSHIFTDOWN,
-    LSHIFTUP,
-    LALTDOWN,
-    LALTUP,
-    RCTRLDOWN,
-    RCTRLUP,
-    RSHIFTDOWN,
-    RSHIFTUP,
-    RALTDOWN,
-    RALTUP,
-    WINDOWN,
-    WINUP
-};
-
-enum MouseBtn {
-    LDOWN,
-    LUP,
-    MDOWN,
-    MUP,
-    RDOWN,
-    RUP,
-    WHEELUP,
-    WHEELDOWN,
-};
+#include "input.h"
 
 void sendModifier(Modifier mod) {
 
@@ -42,4 +16,10 @@ void sendMouseBtn(MouseBtn btn) {
 
 }
 
-#include "input.h"
+void sleep(int ms) {
+    Sleep(ms);
+}
+
+bool setMousePos(int x, int y) {
+    return SetCursorPos(x, y);
+}
