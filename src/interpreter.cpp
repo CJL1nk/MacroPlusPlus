@@ -37,7 +37,7 @@ bool start(std::istream& infile) {
     while (infile.good()) { // While next line exists
 
         std::getline(infile, currLine); // Get next line
-        currLine.erase(std::remove(currLine.begin(), currLine.end(), '\r'), currLine.end());
+        // No carriage return remove line for linux
 
         if (currLine[0] == '#' || currLine.empty()) { continue; } // Go on to next line if comment or empty
 
