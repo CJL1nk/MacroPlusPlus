@@ -4,6 +4,6 @@
 * Make the entire program
 * Implement back end logic
 * Implement GUI
-* Implement MacroLang interpreter
+* <strike>Implement MacroLang interpreter</strike>
 * Implement playback system
 * Implement recording system
