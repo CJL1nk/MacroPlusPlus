@@ -1,9 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/MacroPlusPlus.dir/src/main.cpp.o: dyndep
-
-build CMakeFiles/MacroPlusPlus.dir/src/input.cpp.o: dyndep
-
-build CMakeFiles/MacroPlusPlus.dir/src/interpreter.cpp.o: dyndep
-
-build CMakeFiles/MacroPlusPlus.dir/src/record.cpp.o: dyndep
-
