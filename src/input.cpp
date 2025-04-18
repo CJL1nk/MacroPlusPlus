@@ -4,16 +4,10 @@
 
 #include "input.h"
 
-void sendModifier(Modifier mod) {
-    std::cout << "Sent Modifier: " << mod << std::endl;
-}
+void sendKey(KeySym key, KeyState state) {
 
-void sendChar(char c) {
-    std::cout << "Sent Char: " << c << std::endl;
-}
-
-void sendMouse(MouseBtn btn) {
-    std::cout << "Sent MouseBtn: " << btn << std::endl;
+    KeyCode keycode = XKeysymToKeycode(display, key);
+    XTestFakeKeyEvent(display, keycode, (state == KeyState::DOWN) ? True : False, 0);
 }
 
 void sleep(int ms) {

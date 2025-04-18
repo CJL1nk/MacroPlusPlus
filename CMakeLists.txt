@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.30)
 project(MacroPlusPlus)
 
 set(CMAKE_CXX_STANDARD 20)
+find_package(X11 REQUIRED)
 
 add_executable(MacroPlusPlus
         src/main.cpp
@@ -13,3 +14,6 @@ add_executable(MacroPlusPlus
         src/record.cpp
         src/record.h
 )
+
+
+target_link_libraries(MacroPlusPlus PRIVATE ${X11_LIBRARIES} ${X11_XTest_LIB})

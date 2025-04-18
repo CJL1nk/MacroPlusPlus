@@ -16,14 +16,28 @@ bool start(std::istream& infile) {
     std::string arg;
     std::pair<size_t, size_t> captureBracketPos;
 
+    display = XOpenDisplay(NULL); // Open display
+
     // Map mapping each instruction to a lambda function dealing with their high level logic
     // The devious map of string to lambda function:
     const std::unordered_map<std::string, std::function<void(const std::string&)>> instructionMap = {
-        {"Key", [](const std::string& arg) { sendChar(arg[0]); }},
-        {"Mod", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
-        {"Modifier", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
+        {"KeyDown", [](const std::string& arg) { sendKey(getKeyFromStr(arg), DOWN); }},
+        {"KeyUp", [](const std::string& arg) { sendKey(getKeyFromStr(arg), UP); }},
+        {"MouseDown", [](const std::string& arg) { sendKey(getMouseFromStr(arg), DOWN); }},
+        {"MouseUp", [](const std::string& arg) { sendKey(getMouseFromStr(arg), UP); }},
         {"Sleep", [](const std::string& arg) { sleep(std::stoi(arg)); }},
-        {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }},
+
+        {"Key", [](const std::string& arg) { // Quick sends a key
+            sendKey(getKeyFromStr(arg), DOWN);
+            sleep(10);
+            sendKey(getKeyFromStr(arg), UP);
+        }},
+
+        {"Mouse", [](const std::string& arg) { // Quick sends a mouse
+            sendKey(getMouseFromStr(arg), DOWN);
+            sleep(10);
+            sendKey(getMouseFromStr(arg), UP);
+        }},
 
         {"MousePos", [](const std::string& arg) {
             std::pair<int, int> pos = getMousePosFromArg(arg);
@@ -67,6 +81,8 @@ bool start(std::istream& infile) {
         }
     }
 
+    XCloseDisplay(display); // Close display
+
     return true;
 }
 
@@ -100,21 +116,21 @@ std::string getArg(std::string line, std::pair<size_t, size_t> captureBracketPos
 }
 
 /**
- * Grabs and returns an enumerated version of a modifier
- * @param modStr Name of modifier
- * @return Enumeration of modifier
+ * Grabs and returns an enumerated version of a key
+ * @param keyStr Name of key
+ * @return Enumeration of key
  */
-Modifier getModFromStr(std::string modStr) {
-    return mods[modStr];
+KeySym getKeyFromStr(std::string keyStr) {
+    return keys[keyStr];
 }
 
 /**
  * Grabs and returns an enumerated version of a mouse button
- * @param btnStr Name of mouse button
+ * @param mouseStr Name of mouse button
  * @return Enumeration of mouseButton
  */
-MouseBtn getMouseFromStr(std::string btnStr) {
-    return mouseBtns[btnStr];
+KeySym getMouseFromStr(std::string mouseStr) {
+    return mouseBtns[mouseStr];
 }
 
 /**

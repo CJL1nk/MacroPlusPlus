@@ -8,36 +8,18 @@
 #include <unistd.h>
 #include <iostream>
 
-enum Modifier {
-    LCTRLDOWN,
-    LCTRLUP,
-    LSHIFTDOWN,
-    LSHIFTUP,
-    LALTDOWN,
-    LALTUP,
-    RCTRLDOWN,
-    RCTRLUP,
-    RSHIFTDOWN,
-    RSHIFTUP,
-    RALTDOWN,
-    RALTUP,
-    WINDOWN,
-    WINUP
-};;
-enum MouseBtn {
-    LDOWN,
-    LUP,
-    MDOWN,
-    MUP,
-    RDOWN,
-    RUP,
-    WHEELUP,
-    WHEELDOWN,
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
+#include <X11/extensions/XTest.h>
+
+inline Display* display;
+
+enum KeyState {
+    UP,
+    DOWN
 };
 
-void sendModifier(Modifier mod);
-void sendChar(char c);
-void sendMouse(MouseBtn m);
+void sendKey(KeySym key, KeyState state);
 void sleep(int ms);
 bool setMousePos(int x, int y);
 
