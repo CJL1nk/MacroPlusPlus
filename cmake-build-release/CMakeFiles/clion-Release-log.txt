@@ -1,0 +1,4 @@
+/var/lib/snapd/snap/clion/338/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/var/lib/snapd/snap/clion/338/bin/ninja/linux/x64/ninja -G Ninja -S /home/cj_link/Programming/MacroPlusPlus -B /home/cj_link/Programming/MacroPlusPlus/cmake-build-release
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/cj_link/Programming/MacroPlusPlus/cmake-build-release
