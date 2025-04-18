@@ -34,8 +34,7 @@ bool start(std::istream& infile) {
         }}
     };
 
-    while (infile.good()) {
-        // While next line exists
+    while (infile.good()) { // While next line exists
 
         std::getline(infile, currLine); // Get next line
         currLine.erase(std::remove(currLine.begin(), currLine.end(), '\r'), currLine.end());
