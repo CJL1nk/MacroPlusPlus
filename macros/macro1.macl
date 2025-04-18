@@ -29,6 +29,7 @@ Key[u]
 Key[h]
 GOTO: xloop
 
+MousePos[39, 134] # Sets mouse position to x:39, y:134
 Mouse[LDOWN]
 Sleep[200]
 Mouse[LUP]
