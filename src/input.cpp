@@ -21,5 +21,6 @@ void sleep(int ms) {
 }
 
 bool setMousePos(int x, int y) {
-    return false;
+    std::cout << "Set Mouse Pos: " << x << ", " << y << std::endl;
+    return true;
 }
