@@ -11,8 +11,6 @@ bool start(std::istream& infile) {
     std::string arg;
     std::pair<size_t, size_t> captureBracketPos;
 
-    std::cout << "Playback Started" << std::endl;
-
     while (infile.good()) { // While next line exists
 
         std::getline(infile, currLine); // Get next line
@@ -35,7 +33,7 @@ bool start(std::istream& infile) {
             if (loop.count > 0) {
                 loop.count--;
                 infile.seekg(loop.line);
-                // infile.seekg(-1, std::ios::cur); // Go back 1 char to account for 1 char offset
+                infile.seekg(-1, infile.cur);
             }
         }
         else if (instruction == "LOOP") {
