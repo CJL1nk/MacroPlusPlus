@@ -23,8 +23,10 @@ Key[!]
 Key[ ]
 
 LOOP: xloop, 5
-Key[x]
-Sleep[100]
+Key[b]
+Key[r]
+Key[u]
+Key[h]
 GOTO: xloop
 
 Mouse[LDOWN]

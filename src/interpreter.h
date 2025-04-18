@@ -6,7 +6,6 @@
 #define INTERPRETER_H
 
 #include <fstream>
-#include <map>
 #include <utility>
 #include <functional>
 

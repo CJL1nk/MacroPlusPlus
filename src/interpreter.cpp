@@ -24,16 +24,28 @@ bool start(std::istream& infile) {
         arg = getArg(currLine, captureBracketPos); // Get argument from line
 
         if (instruction != "GOTO" && instruction != "LOOP") {
-            //exec(instruction, arg); // Execute instruction with args
-        } else if (instruction == "GOTO") {
-        } else if (instruction == "LOOP") {
+            exec(instruction, arg); // Execute instruction with args
+        }
+        else if (instruction == "GOTO") {
+
+            std::string label = arg.substr(1); // Get label
+
+            Loop& loop = loops.at(label); // Get loop object
+
+            if (loop.count > 0) {
+                loop.count--;
+                infile.seekg(loop.line);
+                // infile.seekg(-1, std::ios::cur); // Go back 1 char to account for 1 char offset
+            }
+        }
+        else if (instruction == "LOOP") {
 
             size_t commaPos = arg.find_first_of(',');
 
-            std::string label = arg.substr(1, commaPos);
-            size_t count = std::stoi(arg.substr(commaPos + 1));
+            std::string label = arg.substr(1, commaPos - 1); // Get label
+            size_t count = std::stoi(arg.substr(commaPos + 1)) - 1; // Get loop count, - 1 to account for initial pass
 
-            loops[label] = Loop(, count);
+            loops[label] = Loop(infile.tellg(), count); // Save to loop dict
         }
     }
 
@@ -48,9 +60,7 @@ bool exec(std::string instruction, std::string arg) {
         {"Key", [](const std::string& arg) { sendChar(arg[0]); }},
         {"Mod", [](const std::string& arg) { sendModifier(getModFromStr(arg)); }},
         {"Sleep", [](const std::string& arg) { sleep(std::stoi(arg)); }},
-        {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }},
-        {"LOOP", [](const std::string& arg) { loops[arg] = Loop(0, 0); }},
-        {"GOTO", [](const std::string& arg) { std::cout << "GOTO" << std::endl; }}
+        {"Mouse", [](const std::string& arg) { sendMouse(getMouseFromStr(arg)); }}
     };
 
     try { // Call function at instruction map with arg
