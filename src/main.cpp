@@ -4,7 +4,7 @@
 
 int main(int arc, char* argv[]) {
 
-    std::ifstream infile("../macros/macro1.macl");
+    std::ifstream infile("../macros/macro1.macl", std::ios::binary);
 
     start(infile);
 

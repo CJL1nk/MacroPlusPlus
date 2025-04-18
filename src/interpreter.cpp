@@ -14,6 +14,7 @@ bool start(std::istream& infile) {
     while (infile.good()) { // While next line exists
 
         std::getline(infile, currLine); // Get next line
+        currLine.erase(std::remove(currLine.begin(), currLine.end(), '\r'), currLine.end());
 
         if (currLine[0] == '#' || currLine.empty()) { continue; } // Go on to next line if comment or empty
 
@@ -30,10 +31,9 @@ bool start(std::istream& infile) {
 
             Loop& loop = loops.at(label); // Get loop object
 
-            if (loop.count > 0) {
+            if (loop.count > 0) { // Loop until no loops left
                 loop.count--;
                 infile.seekg(loop.line);
-                infile.seekg(-1, infile.cur);
             }
         }
         else if (instruction == "LOOP") {
